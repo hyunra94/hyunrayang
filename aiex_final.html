@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIEX Background</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .bg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #e8f0f8 0%, #f5f0f8 40%, #f8f0f5 70%, #e8f4f0 100%);
+  }
+
+  .blob {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .blob-teal {
+    top: -80px; right: -60px;
+    width: 550px; height: 500px;
+    background: radial-gradient(ellipse at center,
+      rgba(180,220,240,0.55) 0%,
+      rgba(160,200,230,0.3) 50%,
+      transparent 75%);
+    border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
+    animation: floatA 9s ease-in-out infinite;
+  }
+
+  .blob-blue {
+    top: -30px; left: 60px;
+    width: 400px; height: 340px;
+    background: radial-gradient(ellipse at center,
+      rgba(190,215,245,0.45) 0%,
+      rgba(175,205,240,0.22) 50%,
+      transparent 75%);
+    border-radius: 45% 55% 60% 40% / 55% 45% 40% 60%;
+    animation: floatB 10s ease-in-out infinite reverse;
+  }
+
+  .blob-pink {
+    bottom: -60px; left: -40px;
+    width: 500px; height: 420px;
+    background: radial-gradient(ellipse at center,
+      rgba(230,190,220,0.5) 0%,
+      rgba(220,180,215,0.28) 50%,
+      transparent 75%);
+    border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%;
+    animation: floatB 11s ease-in-out infinite;
+  }
+
+  .blob-mint {
+    bottom: -30px; right: 100px;
+    width: 380px; height: 320px;
+    background: radial-gradient(ellipse at center,
+      rgba(170,230,210,0.4) 0%,
+      rgba(150,210,195,0.2) 50%,
+      transparent 75%);
+    border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%;
+    animation: floatA 8s ease-in-out infinite;
+  }
+
+  .blob-center {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; height: 580px;
+    background: radial-gradient(ellipse at center,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.7) 40%,
+      transparent 75%);
+    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  }
+
+  /* Mouse white glow — positioned via JS */
+  .mouse-glow {
+    position: fixed;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: radial-gradient(circle,
+      rgba(255,255,255,0.82) 0%,
+      rgba(255,255,255,0.38) 30%,
+      rgba(255,255,255,0.08) 60%,
+      transparent 75%);
+    /* No transition — instant follow */
+  }
+
+  /* Text overlay */
+  .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 20;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #444;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+
+  .label-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: conic-gradient(#6ec6a0, #5ba3d9, #a78be8, #6ec6a0);
+    flex-shrink: 0;
+  }
+
+  .title {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 900;
+    color: #111;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: clamp(15px, 2.2vw, 22px);
+    font-weight: 400;
+    color: #444;
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+
+  @keyframes floatA {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33%       { transform: translateY(-18px) rotate(2deg); }
+    66%       { transform: translateY(8px) rotate(-1.5deg); }
+  }
+  @keyframes floatB {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    40%       { transform: translateY(14px) rotate(-2deg); }
+    70%       { transform: translateY(-10px) rotate(1deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="bg">
+    <div class="blob blob-teal"></div>
+    <div class="blob blob-blue"></div>
+    <div class="blob blob-pink"></div>
+    <div class="blob blob-mint"></div>
+    <div class="blob blob-center"></div>
+  </div>
+
+  <div class="mouse-glow" id="glow"></div>
+
+  <div class="content">
+    <div class="label">
+      <div class="label-icon"></div>
+      2026 전주MBC K-High Tech Platform
+    </div>
+    <div class="title">재직자 디지털 실무 향상 교육</div>
+    <div class="subtitle" style="color:#999;">고용보험 가입 필수!</div>
+
+  </div>
+
+<script>
+  const glow = document.getElementById('glow');
+
+  // Direct, instant positioning — no lerp, no lag
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+</script>
+</body>
+</html>
