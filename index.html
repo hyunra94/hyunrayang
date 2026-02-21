@@ -18,7 +18,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background: linear-gradient(135deg, #e8f0f8 0%, #f5f0f8 40%, #f8f0f5 70%, #e8f4f0 100%);
+    background: #ffffff;
   }
 
   .blob {
@@ -28,10 +28,10 @@
 
   .blob-teal {
     top: -80px; right: -60px;
-    width: 550px; height: 500px;
+    width: 620px; height: 560px;
     background: radial-gradient(ellipse at center,
-      rgba(180,220,240,0.55) 0%,
-      rgba(160,200,230,0.3) 50%,
+      rgba(180,220,240,0.30) 0%,
+      rgba(160,200,230,0.13) 55%,
       transparent 75%);
     border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
     animation: floatA 9s ease-in-out infinite;
@@ -39,10 +39,10 @@
 
   .blob-blue {
     top: -30px; left: 60px;
-    width: 400px; height: 340px;
+    width: 460px; height: 390px;
     background: radial-gradient(ellipse at center,
-      rgba(190,215,245,0.45) 0%,
-      rgba(175,205,240,0.22) 50%,
+      rgba(190,215,245,0.24) 0%,
+      rgba(175,205,240,0.10) 55%,
       transparent 75%);
     border-radius: 45% 55% 60% 40% / 55% 45% 40% 60%;
     animation: floatB 10s ease-in-out infinite reverse;
@@ -50,10 +50,10 @@
 
   .blob-pink {
     bottom: -60px; left: -40px;
-    width: 500px; height: 420px;
+    width: 550px; height: 470px;
     background: radial-gradient(ellipse at center,
-      rgba(230,190,220,0.5) 0%,
-      rgba(220,180,215,0.28) 50%,
+      rgba(230,190,220,0.27) 0%,
+      rgba(220,180,215,0.12) 55%,
       transparent 75%);
     border-radius: 55% 45% 40% 60% / 40% 60% 55% 45%;
     animation: floatB 11s ease-in-out infinite;
@@ -61,27 +61,15 @@
 
   .blob-mint {
     bottom: -30px; right: 100px;
-    width: 380px; height: 320px;
+    width: 430px; height: 370px;
     background: radial-gradient(ellipse at center,
-      rgba(170,230,210,0.4) 0%,
-      rgba(150,210,195,0.2) 50%,
+      rgba(170,230,210,0.24) 0%,
+      rgba(150,210,195,0.10) 55%,
       transparent 75%);
     border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%;
     animation: floatA 8s ease-in-out infinite;
   }
 
-  .blob-center {
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 900px; height: 580px;
-    background: radial-gradient(ellipse at center,
-      rgba(255,255,255,0.95) 0%,
-      rgba(255,255,255,0.7) 40%,
-      transparent 75%);
-    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
-  }
-
-  /* Mouse white glow — positioned via JS */
   .mouse-glow {
     position: fixed;
     width: 380px;
@@ -91,14 +79,12 @@
     transform: translate(-50%, -50%);
     z-index: 10;
     background: radial-gradient(circle,
-      rgba(255,255,255,0.82) 0%,
-      rgba(255,255,255,0.38) 30%,
-      rgba(255,255,255,0.08) 60%,
+      rgba(255,255,255,0.90) 0%,
+      rgba(255,255,255,0.50) 30%,
+      rgba(255,255,255,0.10) 60%,
       transparent 75%);
-    /* No transition — instant follow */
   }
 
-  /* Text overlay */
   .content {
     position: absolute;
     inset: 0;
@@ -134,7 +120,7 @@
 
   .title {
     font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    font-size: clamp(42px, 7vw, 88px);
+    font-size: clamp(36px, 6vw, 80px);
     font-weight: 900;
     color: #111;
     letter-spacing: -0.02em;
@@ -144,9 +130,9 @@
 
   .subtitle {
     font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    font-size: clamp(15px, 2.2vw, 22px);
+    font-size: clamp(14px, 2vw, 20px);
     font-weight: 400;
-    color: #444;
+    color: #aaa;
     letter-spacing: 0.02em;
     margin-top: 4px;
   }
@@ -169,7 +155,6 @@
     <div class="blob blob-blue"></div>
     <div class="blob blob-pink"></div>
     <div class="blob blob-mint"></div>
-    <div class="blob blob-center"></div>
   </div>
 
   <div class="mouse-glow" id="glow"></div>
@@ -180,14 +165,11 @@
       2026 전주MBC K-High Tech Platform
     </div>
     <div class="title">재직자 디지털 실무 향상 교육</div>
-    <div class="subtitle" style="color:#999;">고용보험 가입 필수!</div>
-
+    <div class="subtitle">고용보험 가입 필수!</div>
   </div>
 
 <script>
   const glow = document.getElementById('glow');
-
-  // Direct, instant positioning — no lerp, no lag
   document.addEventListener('mousemove', e => {
     glow.style.left = e.clientX + 'px';
     glow.style.top  = e.clientY + 'px';
