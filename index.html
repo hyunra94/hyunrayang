@@ -18,9 +18,9 @@
   /* 배경 이미지 — 중앙에 글자 영역만큼만 */
   .bg {
     position: absolute;
-    top: calc(50% + 40px);
+    top: 0px;              /* 네브바 아래부터 시작 */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);   /* 세로 -50% 제거 */
     width: 70%;
     max-width: 860px;
     aspect-ratio: 4 / 3;
